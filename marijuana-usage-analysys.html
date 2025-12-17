@@ -163,17 +163,14 @@ lgl (1): have_tried_marijuana
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">percent_population =</span> <span class="fu">mean</span>(have_tried_marijuana) <span class="sc">*</span> <span class="dv">100</span>)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(marihuana_consumption)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(filtered_marihuana_consumption)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 7
-   year age_group region gender have_tried_marijuana education_level income
-  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;lgl&gt;                &lt;chr&gt;           &lt;chr&gt; 
-1  1995 12-17     North  Male   FALSE                High School     Medium
-2  1995 12-17     North  Male   TRUE                 PhD             Medium
-3  1995 12-17     North  Male   FALSE                Bachelor        Medium
-4  1995 12-17     North  Male   FALSE                Bachelor        Medium
-5  1995 12-17     North  Male   FALSE                PhD             Medium
-6  1995 12-17     North  Male   TRUE                 High School     High  </code></pre>
+<pre><code># A tibble: 3 × 2
+   year percent_population
+  &lt;dbl&gt;              &lt;dbl&gt;
+1  1997               34.0
+2  2018               42.7
+3  2019               51.2</code></pre>
 </div>
 </div>
 </section>
@@ -190,7 +187,9 @@ lgl (1): have_tried_marijuana
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage of population"</span>,</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Year"</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

@@ -32,7 +32,7 @@ filtered_marihuana_consumption <- marihuana_consumption %>%
   group_by(year) %>% 
   summarise(percent_population = mean(have_tried_marijuana) * 100)
 
-head(marihuana_consumption)
+head(filtered_marihuana_consumption)
 ```
 
 ## Plotting data
@@ -49,5 +49,7 @@ ggplot(filtered_marihuana_consumption, aes(x = factor(year), y = percent_populat
     x = "Year",
     y = "Percentage of population",
     fill = "Year"
-  )
+  ) +
+  theme(legend.position = "none") +
+  scale_y_continuous(limits = c(0, 100))
 ```
