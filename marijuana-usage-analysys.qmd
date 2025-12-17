@@ -1,0 +1,53 @@
+---
+title: "Percentage of Population Who Have Tried Marijuana"
+author: "Piotr Ozga"
+format: html
+editor: visual
+---
+
+## Introduction
+
+This Quarto document presents an analysis of percentage of population who have tried marijuana for selected years. It is an attempt to improve upon the chart found [here](https://www.reddit.com/r/CrappyDesign/comments/bemumv/this_chart_on_marijuana_usage/). The data were synthetically generated to reflect the original values as closely as possible.
+
+## Preprocessing data
+
+In this section, we load the dataset, filter the years of interest, and calculate the percentage of population who have tried marijuana for each of these years. We are using tidyverse functions to manipulate the data to achieve clean and plot-ready dataframe.
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse)
+
+# Load required library and upload csv file
+marihuana_consumption <- read_csv("marijuana_data.csv")
+
+head(marihuana_consumption)
+```
+
+```{r}
+# Filter for selected years: 1997, 2018, 2019
+# and calculate the percentage of population who have tried marijuana for each year
+
+filtered_marihuana_consumption <- marihuana_consumption %>% 
+  filter(year %in% c(1997, 2018, 2019)) %>% 
+  group_by(year) %>% 
+  summarise(percent_population = mean(have_tried_marijuana) * 100)
+
+head(marihuana_consumption)
+```
+
+## Plotting data
+
+In this section, we create a bar plot to visualize the percentage of population who have tried marijuana in selected years. We use ggplot2 to make the plot, add labels, and customize it to improve readability.
+
+```{r}
+ggplot(filtered_marihuana_consumption, aes(x = factor(year), y = percent_population, 
+                                           fill = factor(year))) +
+  geom_col() +
+  scale_fill_brewer(palette = "Pastel1") +
+  labs(
+    title = "Percentage of Population Who Have Tried Marijuana",
+    x = "Year",
+    y = "Percentage of population",
+    fill = "Year"
+  )
+```
